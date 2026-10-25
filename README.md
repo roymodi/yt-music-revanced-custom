@@ -27,7 +27,8 @@ yt-music-revanced-custom/
 ├── README.md
 ├── .gitignore
 ├── docs/
-│   └── BUILDING.md
+│   ├── BUILDING.md
+│   └── REPEATED_SONG_CACHE_FEATURE.md
 └── patches/
     └── README.md
 ```
@@ -41,7 +42,7 @@ See [docs/BUILDING.md](docs/BUILDING.md) for Windows, Java, Gradle, and ReVanced
 - [ ] Confirm the current upstream patching API and supported YouTube Music version.
 - [ ] Add a minimal custom patch module that builds successfully.
 - [ ] Add automated build/test checks after the project build system is selected.
-- [ ] Prototype one small, testable settings or UI change.
+- [ ] Implement the cache-age and repeated-playlist feature described in [docs/REPEATED_SONG_CACHE_FEATURE.md](docs/REPEATED_SONG_CACHE_FEATURE.md), starting with reliable local play tracking.
 - [ ] Add audio/playback improvements only after compatibility and behavior can be verified.
 - [ ] Document install, rollback, and troubleshooting steps.
 
