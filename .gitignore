@@ -1,0 +1,31 @@
+# Gradle
+.gradle/
+**/build/
+out/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Local configuration and secrets
+local.properties
+.env
+.env.*
+*.jks
+*.keystore
+secrets/
+credentials.json
+
+# Android packages and generated artifacts
+*.apk
+*.aab
+*.apks
+*.dex
+*.rvp
+
+# Logs and temporary files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
