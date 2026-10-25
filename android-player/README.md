@@ -5,15 +5,18 @@ This is a lightweight Android WebView starter app for a personal online music pl
 ## Current prototype features
 
 - Dark Home page where you add YouTube / YouTube Music links.
-- Embedded YouTube playback when a video allows embedding.
-- Local song-link list and recent-play records using WebView local storage.
-- A `Repeted Song` tab placeholder.
+- YouTube embedded playback using the YouTube IFrame Player API when a video allows embedding.
+- Song-link list with YouTube thumbnails, stored locally in WebView local storage.
+- Recently Played list based on playback-start events.
+- Local `Repeted Song` playlist: records a qualifying ended event when the player reports at least 90% of a video of 30 seconds or longer; adds the song after two qualifying completions in a rolling seven-day window.
+- Removes local play-history records older than 90 days and completed-play counters outside the seven-day window.
 
 ## Limitations
 
-- It cannot automatically clone YouTube Music's personalised recommendations; there is no unrestricted public API for that feed. Songs are added by pasting links.
-- Automatic completed-play detection and automatic repeated-song playlist population are not implemented yet.
-- It stores song IDs/links locally, **not audio files**. No YouTube audio extraction or offline playback.
+- It cannot automatically clone YouTube Music's personalised Home recommendations; there is no unrestricted public API for that feed. Songs are added by pasting links.
+- The repeated-play logic relies on YouTube's embedded player callbacks and has not yet been device-tested. Skipping near the end may be rejected if the reported playback position is below 90%, but player callbacks are not a tamper-proof proof of listening.
+- The 90-day rule currently applies to this app's local play-history records, **not** YouTube's own audio cache or saved song links.
+- This app stores song IDs, links, titles and playback history, not audio files. No YouTube audio extraction or offline playback is included.
 - Some videos disallow embedding and must be opened in YouTube.
 - No APK has been built or tested from this commit yet.
 
@@ -31,6 +34,6 @@ If `gradle` is not on PATH, open the folder in Android Studio and sync with a co
 ## Next steps
 
 1. Add Gradle wrapper and verify a clean build.
-2. Add supported player state callbacks to track completed plays and populate `Repeted Song` after two qualifying plays within seven days.
-3. Add 90-day cleanup for app-owned metadata/artwork cache only. Do not delete YouTube-managed cache or claim audio is retained.
-4. Test playback, navigation, persistence and unsupported embeds on Android.
+2. Test player callbacks and playback persistence on an Android device.
+3. Add a supported source for Home recommendations if one is available; do not scrape private endpoints.
+4. Add 90-day cleanup for app-owned artwork/metadata cache only if implemented. Do not delete YouTube-managed cache or claim audio is retained.
